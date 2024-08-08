@@ -5,7 +5,8 @@ Minimalistic web extension for Firefox with one goal in mind - clear browser dat
 ## Memory Usage
 - Active: ~0.63 MB of RAM
 - Background: 0 bytes of RAM
-(`about:memory`)
+
+`about:memory`
 
 ## Features
 - Clear Options:
