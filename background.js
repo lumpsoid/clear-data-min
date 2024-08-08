@@ -1,19 +1,19 @@
 const millisecondsPerDay = 86400000;
 
-function notify(title, message) {
+function notify(message) {
   browser.notifications.create(`clear-data-min-info`, {
     type: "basic",
-    title: title,
+    title: "clear-data-min",
     message: message,
   });
 }
 
 function notifySuccess(message) {
-  notify("Completed", message);
+  notify(message);
 }
 
 function notifyError(message) {
-  notify("Error", message);
+  notify(message);
 }
 
 function calculateSince(preference) {
