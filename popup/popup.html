@@ -1,50 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clear data</title>
     <style>
-      #lastTip {
-        display: none; /* Hide the tooltip by default */
-      }
-      /* Show the tooltip on hover */
-      #divLast:hover #lastTip {
-        display: block;
-      }
-
       button {
         font-size: 17px;
         margin: 5px;
       }
+
+      #settings {
+        background-color: #00bfff;
+      }
+      #allDataButton {
+        background-color: #ff6f6f;
+      }
+      #historyButton {
+        background-color: #32cd32;
+      }
+      #cookieButton {
+        background-color: #ffd700;
+      }
+      #localStorageButton {
+        background-color: #c47cff;
+      }
+      #cacheButton {
+        background-color: #ff4500;
+      }
+      #indexedDbButton {
+        background-color: #fbf;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="popup">
-        <h2>Clear data</h2>
-        <p>Without confirmation</p>
-        <div>
-          <button id="settings">Settings</button>
-        </div>
-        <div>
-          <button id="allDataButton">All data</button>
-        </div>
-        <div>
-          <button id="historyButton">History</button>
-        </div>
-        <div>
-          <button id="cookieButton">Cookie</button>
-        </div>
-        <div>
-          <button id="localStorageButton">Local Storage</button>
-        </div>
-        <div>
-          <button id="cacheButton">Cache</button>
-        </div>
-        <div>
-          <button id="indexedDbButton">IndexedDB</button>
-        </div>
+      <h2>Clear data</h2>
+      <p>Without confirmation</p>
+      <div>
+        <button id="settings">Settings</button>
+      </div>
+      <div>
+        <button id="allDataButton">All data</button>
+      </div>
+      <div>
+        <button id="historyButton">History</button>
+      </div>
+      <div>
+        <button id="cookieButton">Cookie</button>
+      </div>
+      <div>
+        <button id="localStorageButton">Local Storage</button>
+      </div>
+      <div>
+        <button id="cacheButton">Cache</button>
+      </div>
+      <div>
+        <button id="indexedDbButton">IndexedDB</button>
+      </div>
     </div>
     <script src="popup.js"></script>
-</body>
+  </body>
 </html>
