@@ -5,6 +5,11 @@
 
   "description": "Clear browser data",
 
+  "icons": {
+    "48": "icons/icon48.svg",
+    "96": "icons/icon96.svg"
+  },
+
   "permissions": [
     "notifications",
     "storage",
