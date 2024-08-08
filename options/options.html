@@ -3,19 +3,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="options.css">
   </head>
 
   <body>
     <form>
-      <div>
-        <label for="since">Clear data since (days):</label>
-      </div>
-      <input type="number" id="sinceLast" name="since" />
-      <span>[0 means - all]</span>
-      <div>
-      </div>
+      <label for="since">Clear last</label>
+      <input type="number" id="sinceLast" name="since" max="999" min="0" />
+      <span>days</span>
+      <span>(0 means - all)</span>
     </form>
     <script src="options.js"></script>
   </body>
 </html>
-
