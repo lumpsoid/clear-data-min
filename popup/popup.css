@@ -1,0 +1,25 @@
+body {
+  width: 200px;
+  height: 320px;
+}
+button {
+  font-size: 17px;
+  margin: 5px;
+  background: white;
+}
+button::first-letter {
+  font-weight: bold;
+}
+h2 {
+  display: inline;
+}
+
+.displayOff {
+  display: none;
+}
+
+#settings {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+}

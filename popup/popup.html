@@ -3,43 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clear data</title>
-    <style>
-      button {
-        font-size: 17px;
-        margin: 5px;
-      }
-      button::first-letter {
-        font-weight: bold;
-      }
-      h2 {
-        display: inline;
-      }
 
-      /*
-      #settings {
-        background-color: #00bfff;
-      }
-      #allDataButton {
-        background-color: #ff6f6f;
-      }
-      #historyButton {
-        background-color: #32cd32;
-      }
-      #cookieButton {
-        background-color: #ffd700;
-      }
-      #localStorageButton {
-        background-color: #c47cff;
-      }
-      #cacheButton {
-        background-color: #ff4500;
-      }
-      #indexedDbButton {
-        background-color: #fbf;
-      }
-      */
-    </style>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+
+    <title>Clear data</title>
   </head>
   <body>
     <div id="popup">
@@ -55,6 +22,7 @@
         </div>
         <div>
           <button id="cookieButton">Cookie</button>
+          <button id="identitiesButton">Containers</button>
         </div>
         <div>
           <button id="localStorageButton">Local Storage</button>
@@ -66,6 +34,7 @@
           <button id="indexedDbButton">IndexedDB</button>
         </div>
       </div>
+      <div id="chooseIdentity"></div>
     </div>
     <script src="popup.js"></script>
   </body>

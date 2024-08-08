@@ -10,6 +10,7 @@
     "storage",
     "browsingData",
     "cookies",
+    "contextualIdentities",
     "http://*/",
     "https://*/"
   ],

@@ -48,6 +48,15 @@ function clearAllCookies() {
     });
 }
 
+function clearIdentityCookies(identity) {
+  browser.browsingData.removeCookies({
+      cookieStoreId: identity,
+  }).catch((e) => {
+      console.log(`error on cookie identity clear: ${e}`);
+      notifyError("Cookie identity wasn't cleared");
+  });
+}
+
 // Clear browser history
 function clearHistory(since) {
   let sinceUnix = calculateSince(since);
@@ -137,11 +146,15 @@ function onMessage(message) {
       break;
     case "clearIndexedDB":
       clearIndexedDB();
-      notifySuccess("IndexedDB are deleted");
+      notifySuccess("IndexedDB is cleared");
       break;
     case "clearCookies":
       clearAllCookies();
       notifySuccess("Cookies are deleted");
+      break;
+    case "clearIdentityCookies":
+      clearIdentityCookies(message.identity);
+      notifySuccess(`Identity ${message.name} cookies are deleted`);
       break;
     case "clearHistory":
       clearHistory(message.since);
@@ -149,11 +162,11 @@ function onMessage(message) {
       break;
     case "clearLocalStorage":
       clearLocalStorage();
-      notifySuccess("LocalStorage is deleted");
+      notifySuccess("LocalStorage is cleared");
       break;
     case "clearAll":
       clearAllData(message.since);
-      notifySuccess("All data deleted");
+      notifySuccess("All data cleared");
       break;
     default:
       return Promise.resolve({ status: "error", message: "Unknown action" });
