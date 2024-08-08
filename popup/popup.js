@@ -40,7 +40,14 @@ async function fetchSinceFromLocal() {
   let data = await browser.storage.local.get(["since"]);
   if (data.since !== undefined) {
     window.clearSince = data.since;
+    return;
   }
+  browser.notifications.create(`clear-data-min-info`, {
+    type: "basic",
+    title: "clear-data-min",
+    message: "Error: Set preferences",
+  });
+
 }
 
 function clearListeners() {
