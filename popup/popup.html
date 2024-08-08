@@ -9,7 +9,14 @@
         font-size: 17px;
         margin: 5px;
       }
+      button::first-letter {
+        font-weight: bold;
+      }
+      h2 {
+        display: inline;
+      }
 
+      /*
       #settings {
         background-color: #00bfff;
       }
@@ -31,32 +38,33 @@
       #indexedDbButton {
         background-color: #fbf;
       }
+      */
     </style>
   </head>
   <body>
     <div id="popup">
       <h2>Clear data</h2>
+      <img id="settings" src="/icons/settings.svg" alt="Settings icon" />
       <p>Without confirmation</p>
-      <div>
-        <button id="settings">Settings</button>
-      </div>
-      <div>
-        <button id="allDataButton">All data</button>
-      </div>
-      <div>
-        <button id="historyButton">History</button>
-      </div>
-      <div>
-        <button id="cookieButton">Cookie</button>
-      </div>
-      <div>
-        <button id="localStorageButton">Local Storage</button>
-      </div>
-      <div>
-        <button id="cacheButton">Cache</button>
-      </div>
-      <div>
-        <button id="indexedDbButton">IndexedDB</button>
+      <div id="defaultButtons">
+        <div>
+          <button id="allDataButton">All data</button>
+        </div>
+        <div>
+          <button id="historyButton">History</button>
+        </div>
+        <div>
+          <button id="cookieButton">Cookie</button>
+        </div>
+        <div>
+          <button id="localStorageButton">Local Storage</button>
+        </div>
+        <div>
+          <button id="cacheButton">Cache</button>
+        </div>
+        <div>
+          <button id="indexedDbButton">IndexedDB</button>
+        </div>
       </div>
     </div>
     <script src="popup.js"></script>
