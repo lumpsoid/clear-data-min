@@ -16,6 +16,9 @@
       buildInputs = with pkgs; [
         web-ext
       ];
+      shellHook = ''
+        web-ext run --devtools
+      '';
     };
 
   };
