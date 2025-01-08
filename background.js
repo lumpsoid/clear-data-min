@@ -50,10 +50,10 @@ function clearAllCookies() {
 
 function clearIdentityCookies(identity) {
   browser.browsingData.removeCookies({
-      cookieStoreId: identity,
+    cookieStoreId: identity,
   }).catch((e) => {
-      console.log(`error on cookie identity clear: ${e}`);
-      notifyError("Cookie identity wasn't cleared");
+    console.log(`error on cookie identity clear: ${e}`);
+    notifyError("Cookie identity wasn't cleared");
   });
 }
 
@@ -129,6 +129,9 @@ function openSettings() {
 
 function onInstallation(details) {
   if (details.reason === "install") {
+    browser.storage.local.set({
+      since: 0,
+    });
     openSettings();
   }
 }
