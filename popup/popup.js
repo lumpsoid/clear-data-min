@@ -150,35 +150,44 @@ function addClickOnElement(elementId, callback) {
   document.getElementById(elementId).addEventListener("click", callback);
 }
 
+function addClickOnElements(elements) {
+  elements.forEach(({ id, callback }) => {
+    addClickOnElement(id, callback);
+  });
+}
+
 function removeClickOnElement(elementId, callback) {
   document.getElementById(elementId).removeEventListener("click", callback);
 }
 
+function removeClickOnElements(elements) {
+  elements.forEach(({ id, callback }) => {
+    removeClickOnElement(id, callback);
+  });
+}
+
+// Array of objects to map element IDs to their callback functions
+const elementCallbacks = [
+  { id: "identityBackButton", callback: backFromIdentities },
+  { id: "identitiesButton", callback: getIdentities },
+  { id: "settings", callback: openSettings },
+  { id: "allDataButton", callback: startAllCleaner },
+  { id: "historyButton", callback: startHistoryCleaner },
+  { id: "cookieButton", callback: startCookiesCleaner },
+  { id: "localStorageButton", callback: startLocalStorageCleaner },
+  { id: "cacheButton", callback: startCacheCleaner },
+  { id: "indexedDbButton", callback: startIndexedDbCleaner }
+];
+
 function clearListeners() {
-  removeClickOnElement("identityBackButton", backFromIdentities);
-  removeClickOnElement("identitiesButton", getIdentities);
-  removeClickOnElement("settings", openSettings);
-  removeClickOnElement("allDataButton", startAllCleaner);
-  removeClickOnElement("historyButton", startHistoryCleaner);
-  removeClickOnElement("cookieButton", startCookiesCleaner);
-  removeClickOnElement("localStorageButton", startLocalStorageCleaner);
-  removeClickOnElement("cacheButton", startCacheCleaner);
-  removeClickOnElement("indexedDbButton", startIndexedDbCleaner);
+  removeClickOnElements(elementCallbacks);
   clearIdentitiesListeners();
   document.removeEventListener("DOMContentLoaded", init);
   window.removeEventListener("pagehide", clearListeners);
 }
 
 function init() {
-  addClickOnElement("identityBackButton", backFromIdentities);
-  addClickOnElement("identitiesButton", getIdentities);
-  addClickOnElement("settings", openSettings);
-  addClickOnElement("allDataButton", startAllCleaner);
-  addClickOnElement("historyButton", startHistoryCleaner);
-  addClickOnElement("cookieButton", startCookiesCleaner);
-  addClickOnElement("localStorageButton", startLocalStorageCleaner);
-  addClickOnElement("cacheButton", startCacheCleaner);
-  addClickOnElement("indexedDbButton", startIndexedDbCleaner);
+  addClickOnElements(elementCallbacks);
 }
 
 // main
