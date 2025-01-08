@@ -9,9 +9,8 @@ function notify(message) {
 function openSettings() {
   browser.runtime
     .openOptionsPage()
-    .then(() => { })
-    .catch((error) => {
-      console.error("Failed to open options page:", error);
+    .then(() => {
+      window.close();
     });
 }
 
@@ -39,32 +38,23 @@ function chooseIdentityToCookieClear(event) {
   });
 }
 
-function hideElement(elementId) {
-  document.getElementById(elementId).classList.add("displayOff");
+function revealElement(id) {
+  document.getElementById(id).style.display = 'block';
 }
 
-function revealElement(elementId) {
-  document.getElementById(elementId).classList.remove("displayOff");
+function hideElement(id) {
+  document.getElementById(id).style.display = 'none';
 }
 
 function spawnButtonWithIdentity(identity) {
   const row = document.createElement("div");
-  const img = document.createElement("div");
-  // hack to recolor svg from url
-  img.style = `
-    display: inline-block;
-    background-color: ${identity.color};
-    mask-image: url(${identity.iconUrl});
-    mask-size: 20px;
-    height: 20px;
-    width: 20px;
-  `;
-  row.appendChild(img);
+  row.classList.add("button-row");
 
   const button = document.createElement("button");
-  button.className = "identity";
   button.innerText = identity.name;
-  button.style = `background: ${identity.colorCode}17;`;
+  button.className = "identity";
+  //background-color: ${identity.color};
+  button.style = `background: ${identity.colorCode} 10px 50% no-repeat url(${identity.iconUrl});`
   button.dataset.identity = identity.cookieStoreId;
   button.dataset.name = identity.name;
   button.addEventListener("click", chooseIdentityToCookieClear);
@@ -91,7 +81,7 @@ function backFromIdentities() {
 }
 
 function spawnIdentities() {
-  let div = document.getElementById("chooseIdentity");
+  let chooseIdentityDiv = document.getElementById("chooseIdentity");
 
   if (browser.contextualIdentities === undefined) {
     notify(
@@ -105,19 +95,9 @@ function spawnIdentities() {
       return;
     }
 
-    // move to a function?
-    // add button back on identity choose
-    const row = document.createElement("div");
-    const buttonBack = document.createElement("button");
-    buttonBack.innerHTML = "Back";
-    buttonBack.id = "identityBackButton";
-    buttonBack.addEventListener("click", backFromIdentities);
-    row.appendChild(buttonBack);
-    div.appendChild(buttonBack);
-
     for (const identity of identities) {
       const buttonDiv = spawnButtonWithIdentity(identity);
-      div.appendChild(buttonDiv);
+      chooseIdentityDiv.appendChild(buttonDiv);
     }
   });
 }
@@ -125,6 +105,7 @@ function spawnIdentities() {
 function getIdentities() {
   if (document.getElementsByClassName("identity").length == 0) {
     spawnIdentities();
+    revealElement("chooseIdentity");
   } else {
     revealElement("chooseIdentity");
   }
@@ -144,11 +125,25 @@ function startIndexedDbCleaner() {
 }
 
 async function fetchSinceFromLocal() {
-  // fetch extension data
-  let data = await browser.storage.local.get(["since"]);
-  if (data.since !== undefined) {
-    window.clearSince = data.since;
-    return;
+  try {
+    // Fetch extension data
+    let data = await browser.storage.local.get(["since"]);
+
+    // Check if "since" is undefined
+    if (data.since === undefined) {
+      notify("Check settings to write since option.");
+      return;
+    }
+
+    // Assign "since" to window.clearSince if it's not already set or different
+    if (window.clearSince !== data.since) {
+      window.clearSince = data.since;
+      return;
+    }
+
+  } catch (error) {
+    console.error('Error fetching data from local storage:', error);
+    notify("An error occurred while fetching the 'since' option. Please try again.");
   }
 }
 
@@ -161,6 +156,7 @@ function removeClickOnElement(elementId, callback) {
 }
 
 function clearListeners() {
+  removeClickOnElement("identityBackButton", backFromIdentities);
   removeClickOnElement("identitiesButton", getIdentities);
   removeClickOnElement("settings", openSettings);
   removeClickOnElement("allDataButton", startAllCleaner);
@@ -175,6 +171,7 @@ function clearListeners() {
 }
 
 function init() {
+  addClickOnElement("identityBackButton", backFromIdentities);
   addClickOnElement("identitiesButton", getIdentities);
   addClickOnElement("settings", openSettings);
   addClickOnElement("allDataButton", startAllCleaner);

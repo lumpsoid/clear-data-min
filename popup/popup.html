@@ -1,41 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" type="text/css" href="popup.css">
-
-    <title>Clear data</title>
-  </head>
-  <body>
-    <div id="popup">
-      <h2>Clear data</h2>
-      <img id="settings" src="/icons/settings.svg" alt="Settings icon" />
-      <p>Without confirmation</p>
-      <div id="defaultButtons">
-        <div>
-          <button id="allDataButton">All data</button>
-        </div>
-        <div>
-          <button id="historyButton">History</button>
-        </div>
-        <div>
-          <button id="cookieButton">Cookie</button>
-          <button id="identitiesButton">Containers</button>
-        </div>
-        <div>
-          <button id="localStorageButton">Local Storage</button>
-        </div>
-        <div>
-          <button id="cacheButton">Cache</button>
-        </div>
-        <div>
-          <button id="indexedDbButton">IndexedDB</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <title>Clear Data</title>
+</head>
+<body>
+  <div id="popup">
+    <h2>Clear Data</h2>
+    <img id="settings" src="/icons/settings.svg" alt="Settings icon" />
+    <p>Without confirmation</p>
+    <div id="defaultButtons" class="container">
+      <div class="button-row">
+        <button id="allDataButton">All Data</button>
       </div>
-      <div id="chooseIdentity"></div>
+      <div class="button-row">
+        <button id="historyButton">History</button>
+      </div>
+      <div class="button-row">
+        <button id="cookieButton">Cookie</button>
+        <button id="identitiesButton">Containers</button>
+      </div>
+      <div class="button-row">
+        <button id="localStorageButton">Local Storage</button>
+      </div>
+      <div class="button-row">
+        <button id="cacheButton">Cache</button>
+      </div>
+      <div class="button-row">
+        <button id="indexedDbButton">IndexedDB</button>
+      </div>
     </div>
-    <script src="popup.js"></script>
-  </body>
+    <div id="chooseIdentity" class="container" style="display: none;">
+      <div class="button-row">
+        <button id="identityBackButton">Back</button>
+      </div>
+      <!-- Identity buttons will be populated here dynamically -->
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
 </html>
+
