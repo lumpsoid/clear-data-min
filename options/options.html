@@ -1,18 +1,26 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="options.css">
-  </head>
-
-  <body>
-    <form>
-      <label for="since">Clear last</label>
-      <input type="number" id="sinceLast" name="since" max="999" min="0" />
-      <span>days</span>
-      <span>(0 means - all)</span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="options.css">
+  <title>Options</title>
+</head>
+<body>
+  <div class="container">
+    <form class="options-form">
+      <div class="form-group">
+        <label for="sinceLast">Clear last</label>
+        <input type="number" id="sinceLast" name="since" max="999" min="0" />
+        <span>days</span>
+        <span class="note">(0 means - all)</span>
+      </div>
     </form>
-    <script src="options.js"></script>
-  </body>
+  </div>
+  <div class="container">
+    <button id="closeButton" class="close-button">Close</button>
+  </div>
+  <script src="options.js"></script>
+</body>
 </html>
+

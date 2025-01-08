@@ -6,6 +6,10 @@ function validateInput(e) {
   e.target.value = value;
 }
 
+function closeButton() {
+  window.close();
+}
+
 // Define the event listener function separately
 function handlePageHide() {
   // Submit the sinceLast value
@@ -17,6 +21,9 @@ function handlePageHide() {
     since: sinceNew,
   });
 
+  document
+    .getElementById('closeButton')
+    .removeEventListener('click', closeButton);
   document
     .getElementById("sinceLast")
     .removeEventListener("input", validateInput);
@@ -36,6 +43,10 @@ async function init() {
   document
     .getElementById("sinceLast")
     .addEventListener("input", validateInput);
+
+  document
+    .getElementById('closeButton')
+    .addEventListener('click', closeButton);
 }
 
 // Add the event listener
