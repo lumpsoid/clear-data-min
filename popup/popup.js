@@ -53,7 +53,6 @@ function spawnButtonWithIdentity(identity) {
   const button = document.createElement("button");
   button.innerText = identity.name;
   button.className = "identity";
-  //background-color: ${identity.color};
   button.style = `background: ${identity.colorCode} 10px 50% no-repeat url(${identity.iconUrl});`
   button.dataset.identity = identity.cookieStoreId;
   button.dataset.name = identity.name;
